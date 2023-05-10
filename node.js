@@ -5,6 +5,8 @@
 const score;
 const level;
 const linesCleared;
+const levelUp: 5
+const startingSpeed: 500ms
 
 const currentShape;
 const currentRotation;
