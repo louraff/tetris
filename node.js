@@ -105,36 +105,54 @@ const width = 10
 const height = 15
 const cellCount = width * height
 const cells = []
+const squareIndices = []
 
-const startingRow = 0
-const startingCol = 4
+
+let startingRow = 0
+let startingCol = 4
 
 /*----- cached elements  -----*/
 const grid = document.querySelector('.grid')
 
 /*----- event listeners -----*/
-// document.addEventListener('keydown', handleUserInput)
+document.addEventListener('keydown', handleUserInput)
 
 /*----- functions -----*/
-// function addShape(startingPosition) {
-//     cells.startingPosition.classList.add('')
-// }
 
-// function handleUserInput(event) {
-//     console.log(event.keyCode)
+init()
 
-//     const key = event.keyCode
-//     const up = 38
-//     const down = 40
-//     const left = 37
-//     const right = 39
-//     const space = 32
+function init() {
+    createGrid(generateShape)
+}
 
-//     if (key === left && startingCol % width !== 0) {
-//                 console.log('up')
-//                 startingCol -= width
-// }
-// }
+
+function handleUserInput(event) {
+    console.log(event.keyCode)
+
+    const key = event.keyCode
+    const up = 38
+    const down = 40
+    const left = 37
+    const right = 39
+    const space = 32
+
+   
+
+    if (key === left) {
+        startingCol--
+    } else if (key === right) {
+        startingCol++
+    } else if (key === down) {
+        startingRow++
+    } else if (key === space) {
+        // ! ADD CODE
+    } else if (key === up) {
+        // ! ADD CODE
+    }
+    
+    removeShape()
+    generateShape()
+}
 
 function createGrid(cb) {
     for (let i = 0; i < cellCount; i++) {
@@ -154,6 +172,7 @@ function createGrid(cb) {
     }
     cb()
 }
+
  function generateShape() {
         tetrominos.square.rotations[0].forEach(function(colArr, colIdx) {
             colArr.forEach(function(cellVal, rowIdx) { 
@@ -164,12 +183,20 @@ function createGrid(cb) {
 
                 gameBoardIndex = gameBoardRow * width + gameBoardCol
                 cells[gameBoardIndex].classList.add('square')
+                squareIndices.push(gameBoardIndex)
             }
         })
     })
  }
 
- 
+ function removeShape() {
+    squareIndices.forEach(index => {
+        cells[index].classList.remove('square')
+    })
+    squareIndices.length = 0
+ }
 
-createGrid(generateShape)
+ function playGame() {}
+
+
 })
