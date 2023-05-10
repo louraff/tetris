@@ -1,4 +1,4 @@
-* {
+ * {
   box-sizing: border-box;
 }
 
@@ -9,14 +9,13 @@ body {
 
 header {
   font-size: 30px;
-}
+} 
 
 .grid-wrapper {
-  height: 100vmin;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} 
 
 .grid {
   align-items: center;
@@ -35,8 +34,9 @@ header {
   height: 10%;
   width: 10%;
   background-color:white;
-}
+} 
 
 .grid div.square {
   background-color: black;
 }
+

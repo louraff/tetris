@@ -86,6 +86,7 @@ const tetrominos = {
     }
   }
   
+  const sequence = ['square', 'L', 'skew', 'T', 'Line']
 
 /*----- state variables -----*/
 const score = 0
@@ -96,7 +97,7 @@ const levelUp = 5
 const startingSpeed = 500
 const speedIncrease = 0.9
 
-const currentShape = null
+let currentShape = null
 const currentRotation = null
 const nextShape = null
 const ghostShape = null
@@ -125,6 +126,12 @@ function init() {
     createGrid(generateShape)
 }
 
+function generateRandomShape(arr) {
+    const randomIndex = Math.floor(Math.random() * arr.length)
+
+    const shape = arr[randomIndex]
+    return shape
+}
 
 function handleUserInput(event) {
     console.log(event.keyCode)
@@ -196,7 +203,37 @@ function createGrid(cb) {
     squareIndices.length = 0
  }
 
- function playGame() {}
+ function playGame() {
+    currentShape = generateRandomShape(sequence)
+    gameLoop()
+ }
+
+ function gameLoop() {
+    removeShape()
+    startingRow++
+    generateShape()
+    setTimeout(gameLoop, startingSpeed)
+ }
+
+ playGame()
+
+ 
+//  setInterval( {
+
+//  function gameLoop({
+//    currentShape = tetromino.generateRandomShape(sequence).rotations[0]
+//     for(let cell of cells) {
+    
+//     tetrominos.square.rotations[0].forEach(function(colArr, colIdx) {
+//         colArr.forEach(function(cellVal, rowIdx) { 
+//         if (cellVal !== 0) {
+            
+//         }
+//      })
+//     })
+// }
+
+//  }, startingSpeed)
 
 
 })
