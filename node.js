@@ -1,12 +1,29 @@
+/*----- constants -----*/
 
-// CREATE GRID
 
-const grid = document.querySelector('.grid')
+/*----- state variables -----*/
+const score;
+const level;
+const linesCleared;
+
+const currentShape;
+const currentRotation;
+const nextShape;
+const ghostShape;
 
 const width = 10
 const height = 15
 const cellCount = width * height
 const cells = []
+
+/*----- cached elements  -----*/
+const grid = document.querySelector('.grid')
+
+/*----- event listeners -----*/
+
+
+/*----- functions -----*/
+
 
 function createGrid() {
     for (let i = 0; i < cellCount; i++) {
