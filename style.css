@@ -7,7 +7,7 @@ body {
   margin: 0;
 }
 
-head {
+header {
   font-size: 30px;
 }
 
@@ -20,7 +20,7 @@ head {
 
 .grid {
   align-items: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+   
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -34,4 +34,9 @@ head {
   flex-grow: 1;
   height: 10%;
   width: 10%;
+  background-color:white;
+}
+
+grid div.square {
+  background-color: black;
 }
