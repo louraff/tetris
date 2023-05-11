@@ -86,7 +86,7 @@ const tetrominos = {
     }
   }
   
-  const sequence = ['square', 'L', 'skew', 'T', 'Line']
+  const sequence = ['square', 'L', 'skew', 'T', 'line']
 
 /*----- state variables -----*/
 const score = 0
@@ -94,10 +94,10 @@ const level = 1
 const linesCleared = 0
 const levelUp = 5
 
-const startingSpeed = 500
+const startingSpeed = 900
 const speedIncrease = 0.9
 
-let currentShape = null
+let currentShape;
 const currentRotation = null
 const nextShape = null
 const ghostShape = null
@@ -106,7 +106,7 @@ const width = 10
 const height = 15
 const cellCount = width * height
 const cells = []
-const squareIndices = []
+const shapeIndices = []
 
 
 let startingRow = 0
@@ -123,7 +123,10 @@ document.addEventListener('keydown', handleUserInput)
 init()
 
 function init() {
-    createGrid(generateShape)
+    createGrid(() => {
+        currentShape = generateRandomShape(sequence)
+        generateShape()
+     });
 }
 
 function generateRandomShape(arr) {
@@ -131,6 +134,34 @@ function generateRandomShape(arr) {
 
     const shape = arr[randomIndex]
     return shape
+}
+
+function generateShape() {
+    tetrominos[currentShape].rotations[0].forEach(function(colArr, colIdx) {
+        colArr.forEach(function(cellVal, rowIdx) { 
+        if (cellVal !== 0) {
+
+           gameBoardRow = startingRow + rowIdx // 1
+           gameBoardCol = startingCol + colIdx // 5
+
+           gameBoardIndex = gameBoardRow - gameBoardCol
+
+           cells[gameBoardIndex].classList.add(currentShape)
+
+           cells[gameBoardIndex].classList.add(tetrominos[currentShape].color)
+            
+            shapeIndices.push(gameBoardIndex)
+        }
+    })
+})
+}
+
+function removeShape() {
+shapeIndices.forEach(index => {
+    cells[index].classList.remove(tetrominos[currentShape].color)
+    cells[index].classList.remove(currentShape)
+})
+shapeIndices.length = 0
 }
 
 function handleUserInput(event) {
@@ -178,30 +209,11 @@ function createGrid(cb) {
         cells.push(cell)
     }
     cb()
+
+ console.log(createGrid())
 }
 
- function generateShape() {
-        tetrominos.square.rotations[0].forEach(function(colArr, colIdx) {
-            colArr.forEach(function(cellVal, rowIdx) { 
-            if (cellVal === 1) {
-
-               gameBoardRow = startingRow + rowIdx
-               gameBoardCol = startingCol + colIdx
-
-                gameBoardIndex = gameBoardRow * width + gameBoardCol
-                cells[gameBoardIndex].classList.add('square')
-                squareIndices.push(gameBoardIndex)
-            }
-        })
-    })
- }
-
- function removeShape() {
-    squareIndices.forEach(index => {
-        cells[index].classList.remove('square')
-    })
-    squareIndices.length = 0
- }
+ 
 
  function playGame() {
     currentShape = generateRandomShape(sequence)
@@ -217,23 +229,23 @@ function createGrid(cb) {
 
  playGame()
 
- 
-//  setInterval( {
+ function isValidMove(newRow, newCol) {
+    currentRotation = tetrominos[currentShape].rotations[0]
+    for (let colIdx = 0; colIdx < currentRotation.length; colIdx++) {
+        for (let rowIdx = 0; rowIdx < currentRotation[colIdx].length) {
+            if (currentRotation[colIdx][rowIdx] !== 0) {
+                const newRowPosition = newRow + rowIdx
+                const newColPosition = newCol + colIdx
 
-//  function gameLoop({
-//    currentShape = tetromino.generateRandomShape(sequence).rotations[0]
-//     for(let cell of cells) {
-    
-//     tetrominos.square.rotations[0].forEach(function(colArr, colIdx) {
-//         colArr.forEach(function(cellVal, rowIdx) { 
-//         if (cellVal !== 0) {
-            
-//         }
-//      })
-//     })
-// }
-
-//  }, startingSpeed)
+                if (
+                    newRowPosition < 0 || newRowPosition >= height || newColPosition < 0 || newColPosition >= width || cells[newRowPosition * width + newColPosition].classList.contains(currentShape)) {
+                        return false
+                    }
+                }
+            }
+        }
+    } return true
+ }
 
 
 })
