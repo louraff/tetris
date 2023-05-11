@@ -235,7 +235,7 @@ function createGrid(cb) {
 
  playGame()
 
- function isValidMove(newRow, newCol, rotation) {
+ function isValidMove(newRow, newCol, rotation = currentRotation) {
     rotation = tetrominos[currentShape].rotations[0]
     for (let colIdx = 0; colIdx < rotation.length; colIdx++) {
         for (let rowIdx = 0; rowIdx < rotation[colIdx].length; rowIdx++) {
@@ -257,6 +257,10 @@ function rotateTetrimino() {
     const currentRotationIndex = tetrominos[currentShape].rotations.indexOf(currentRotation)
     const nextRotationIndex =  (currentRotationIndex + 1) % tetrominos[currentShape].rotations.length
     const nextRotation = tetrominos[currentShape].rotations[nextRotationIndex]
+
+        if (isValidMove(startingRow. startingCol, nextRotation)) {
+            currentRotation = nextRotation
+        }
 }
 
 
