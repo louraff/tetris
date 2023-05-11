@@ -225,8 +225,14 @@ function createGrid(cb) {
  }
 
  function gameLoop() {
+
+    if (isValidMove(startingRow + 1, startingCol)) {
+        startingRow++
+    } else {
+        
+    }
+
     removeShape()
-    startingRow++
     generateShape()
     setTimeout(gameLoop, startingSpeed)
  }
