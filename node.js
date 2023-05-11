@@ -144,7 +144,7 @@ function generateShape() {
            gameBoardRow = startingRow + rowIdx // 1
            gameBoardCol = startingCol + colIdx // 5
 
-           gameBoardIndex = gameBoardRow - gameBoardCol
+           gameBoardIndex = gameBoardRow * width + gameBoardCol
 
            cells[gameBoardIndex].classList.add(currentShape)
 
@@ -177,11 +177,17 @@ function handleUserInput(event) {
    
 
     if (key === left) {
-        startingCol--
+        if (isValidMove(startingRow, startingCol - 1)) {
+            startingCol--
+        } 
     } else if (key === right) {
-        startingCol++
+        if (isValidMove(startingRow, startingCol + 1)) {
+            startingCol++
+        }
     } else if (key === down) {
+        if (isValidMove(startingRow + 1, startingCol)) {
         startingRow++
+        }
     } else if (key === space) {
         // ! ADD CODE
     } else if (key === up) {
@@ -229,11 +235,11 @@ function createGrid(cb) {
 
  playGame()
 
- function isValidMove(newRow, newCol) {
-    currentRotation = tetrominos[currentShape].rotations[0]
-    for (let colIdx = 0; colIdx < currentRotation.length; colIdx++) {
-        for (let rowIdx = 0; rowIdx < currentRotation[colIdx].length) {
-            if (currentRotation[colIdx][rowIdx] !== 0) {
+ function isValidMove(newRow, newCol, rotation) {
+    rotation = tetrominos[currentShape].rotations[0]
+    for (let colIdx = 0; colIdx < rotation.length; colIdx++) {
+        for (let rowIdx = 0; rowIdx < rotation[colIdx].length; rowIdx++) {
+            if (rotation[colIdx][rowIdx] !== 0) {
                 const newRowPosition = newRow + rowIdx
                 const newColPosition = newCol + colIdx
 
@@ -243,9 +249,17 @@ function createGrid(cb) {
                     }
                 }
             }
-        }
-    } return true
- }
+        } return true
+    } 
+
+
+function rotateTetrimino() {
+    const currentRotationIndex
+    const nextRotationIndex
+    const nextRotation
+}
+
+
 
 
 })
