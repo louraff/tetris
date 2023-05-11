@@ -221,7 +221,7 @@ function createGrid(cb) {
 
  function playGame() {
     currentShape = generateRandomShape(sequence)
-    gameLoop()
+    setInterval(gameLoop, startingSpeed)
  }
 
  function gameLoop() {
