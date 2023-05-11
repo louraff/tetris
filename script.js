@@ -241,6 +241,23 @@ function createGrid(cb) {
 
  playGame()
 
+ function checkAndClearFilledLines() {
+    for (let rowIdx = height - 1; rowIdx < 0; rowIdx--) {
+       let isFilled = true
+       for(let colIdx = 0; cell < width; colIdx++)
+       const cellIndex = rowIdx * width + colIdx
+         if (cells[cellIndex].classList.lenght <= 1) {
+            isFilled = false
+            break
+        }
+        if (isFilled) {
+            
+                cells[index].classList.remove(tetrominos[currentShape].color)
+                cells[index].classList.remove(currentShape)
+            })
+        }
+    }
+
  function isValidMove(newRow, newCol, rotation = currentRotation) {
     for (let colIdx = 0; colIdx < rotation.length; colIdx++) {
         for (let rowIdx = 0; rowIdx < rotation[colIdx].length; rowIdx++) {
