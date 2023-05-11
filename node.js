@@ -256,7 +256,7 @@ function createGrid(cb) {
 function rotateTetrimino() {
     const currentRotationIndex = tetrominos[currentShape].rotations.indexOf(currentRotation)
     const nextRotationIndex =  (currentRotationIndex + 1) % tetrominos[currentShape].rotations.length
-    const nextRotation = 
+    const nextRotation = tetrominos[currentShape].rotations[nextRotationIndex]
 }
 
 
