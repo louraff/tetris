@@ -98,7 +98,7 @@ const startingSpeed = 900
 const speedIncrease = 0.9
 
 let currentShape;
-let currentRotation;
+let currentRotation = 0;
 const nextShape = null
 const ghostShape = null
 
@@ -236,7 +236,7 @@ function createGrid(cb) {
     }
     removeShape()
     generateShape()
-    setTimeout(gameLoop, startingSpeed)
+    setInterval(gameLoop, startingSpeed)
  }
 
  playGame()
@@ -244,18 +244,30 @@ function createGrid(cb) {
  function checkAndClearFilledLines() {
     for (let rowIdx = height - 1; rowIdx < 0; rowIdx--) {
        let isFilled = true
-       for(let colIdx = 0; cell < width; colIdx++)
+       for(let colIdx = 0; colIdx < width; colIdx++) {
        const cellIndex = rowIdx * width + colIdx
-         if (cells[cellIndex].classList.lenght <= 1) {
+         if (cells[cellIndex].classList.length <= 1) {
             isFilled = false
             break
         }
+    
         if (isFilled) {
-            
-                cells[index].classList.remove(tetrominos[currentShape].color)
-                cells[index].classList.remove(currentShape)
-            })
+            for (let colIdx = 0; colIdx < width; colIdx++) {
+                const cellIndex = rowIdx * width + colIdx
+                cells[cellIndex].className = 'cell'
+            }
+            for (let newRowIdx = rowIdx - 1; newRowIdx >= 0; newRowIdx --) {
+                for (let colIdx = 0; colIdx < width; colIdx++) {
+                    const currentCellIndex = (rowIdx + 1) * width + colIdx
+                    cells[nextCellIndex].className = cells[currentCellIndex].className
+                }
+            }
+            for (let colIdx = 0; colIdx < width; colIdx ++) {
+                cells[colIdx]. className = 'cell';
+            }
+            rowIdx++ 
         }
+     }
     }
 
  function isValidMove(newRow, newCol, rotation = currentRotation) {
@@ -283,9 +295,6 @@ function rotateTetromino() {
         if (isValidMove(startingRow, startingCol, nextRotation)) {
             currentRotation = nextRotation
         }
-}
+    }
 
-
-
-
-})
+ }})

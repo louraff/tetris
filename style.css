@@ -5,11 +5,28 @@
 body {
   height: 100vmin;
   margin: 0;
+  background-color: #FBC3B8 ;
 }
 
 header {
-  font-size: 30px;
+  font-size: 8vmin;
+  font-family: 'Gruppo', cursive;
+  color: #cc9f96;
+  display: flex;
+  justify-content: center;
+  margin-top: 10vmin;
 } 
+
+button {
+  font-size: 4vmin;
+  display: flex;
+  justify-content: center;
+  padding: 2vmin;
+  font-family: 'Gruppo', cursive;
+  border: 0 solid #FCDBBE;
+  border-radius: 2vmin;
+  color: #cc9f96;
+}
 
 .grid-wrapper {
   display: flex;
@@ -29,14 +46,29 @@ header {
 }
 
 .grid div {
-  border: 1px solid lightgrey;
+  border: 1px solid #FBC3B8;
   flex-grow: 1;
   height: 10%;
   width: 10%;
-  background-color:white;
+  background-color: #FCDBBE;
 } 
 
 .grid div.square {
-  background-color: black;
+  background-color: rgb(240, 32, 143);
 }
 
+.grid div.L {
+  background-color: blue;
+}
+
+.grid div.skew {
+  background-color: green;
+}
+
+.grid div.T {
+  background-color: red;
+}
+
+.grid div.line {
+  background-color: orange;
+}
