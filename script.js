@@ -191,7 +191,7 @@ function handleUserInput(event) {
     } else if (key === space) {
         // ! ADD CODE
     } else if (key === up) {
-        // ! ADD CODE
+        rotateTetromino()
     }
     
     removeShape()
@@ -253,7 +253,7 @@ function createGrid(cb) {
     } 
 
 
-function rotateTetrimino() {
+function rotateTetromino() {
     const currentRotationIndex = tetrominos[currentShape].rotations.indexOf(currentRotation)
     const nextRotationIndex =  (currentRotationIndex + 1) % tetrominos[currentShape].rotations.length
     const nextRotation = tetrominos[currentShape].rotations[nextRotationIndex]
