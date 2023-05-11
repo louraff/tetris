@@ -215,8 +215,6 @@ function createGrid(cb) {
         cells.push(cell)
     }
     cb()
-
- console.log(createGrid())
 }
 
  
