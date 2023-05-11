@@ -98,7 +98,7 @@ const startingSpeed = 900
 const speedIncrease = 0.9
 
 let currentShape;
-const currentRotation = null
+let currentRotation;
 const nextShape = null
 const ghostShape = null
 
@@ -236,7 +236,6 @@ function createGrid(cb) {
  playGame()
 
  function isValidMove(newRow, newCol, rotation = currentRotation) {
-    rotation = tetrominos[currentShape].rotations[0]
     for (let colIdx = 0; colIdx < rotation.length; colIdx++) {
         for (let rowIdx = 0; rowIdx < rotation[colIdx].length; rowIdx++) {
             if (rotation[colIdx][rowIdx] !== 0) {
@@ -258,7 +257,7 @@ function rotateTetromino() {
     const nextRotationIndex =  (currentRotationIndex + 1) % tetrominos[currentShape].rotations.length
     const nextRotation = tetrominos[currentShape].rotations[nextRotationIndex]
 
-        if (isValidMove(startingRow. startingCol, nextRotation)) {
+        if (isValidMove(startingRow, startingCol, nextRotation)) {
             currentRotation = nextRotation
         }
 }
