@@ -229,9 +229,11 @@ function createGrid(cb) {
     if (isValidMove(startingRow + 1, startingCol)) {
         startingRow++
     } else {
-        
+        checkAndClearFilledLines()
+        currentShape = generateRandomShape(sequence)
+        startingRow = 0
+        startingCol = 4
     }
-
     removeShape()
     generateShape()
     setTimeout(gameLoop, startingSpeed)
